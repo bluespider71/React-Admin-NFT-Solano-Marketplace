@@ -4,18 +4,20 @@ import { lazy } from 'react';
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
-// dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
+// home routing
+const HomeDefault = Loadable(lazy(() => import('views/home')));
 
-// utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
-const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
-const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
+// market place routing
+const Account = Loadable(lazy(() => import('views/account')));
 
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+// market place routing
+const Inventory = Loadable(lazy(() => import('views/inventory')));
+
+// market place routing
+const MarketPlace = Loadable(lazy(() => import('views/market-place')));
+
+// komodo express routing
+const KomodoExpress = Loadable(lazy(() => import('views/komodo-express')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -25,35 +27,27 @@ const MainRoutes = {
     children: [
         {
             path: '/',
-            element: <DashboardDefault />
+            element: <HomeDefault />
         },
         {
-            path: '/dashboard/default',
-            element: <DashboardDefault />
+            path: '/home',
+            element: <HomeDefault />
         },
         {
-            path: '/utils/util-typography',
-            element: <UtilsTypography />
+            path: '/market-place',
+            element: <MarketPlace />
         },
         {
-            path: '/utils/util-color',
-            element: <UtilsColor />
+            path: '/komodo-express',
+            element: <KomodoExpress />
         },
         {
-            path: '/utils/util-shadow',
-            element: <UtilsShadow />
+            path: '/account',
+            element: <Account />
         },
         {
-            path: '/icons/tabler-icons',
-            element: <UtilsTablerIcons />
-        },
-        {
-            path: '/icons/material-icons',
-            element: <UtilsMaterialIcons />
-        },
-        {
-            path: '/sample-page',
-            element: <SamplePage />
+            path: '/inventory',
+            element: <Inventory />
         }
     ]
 };

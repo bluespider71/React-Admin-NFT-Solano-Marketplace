@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Drawer, useMediaQuery } from '@mui/material';
+import { Box, Button, Drawer, useMediaQuery } from '@mui/material';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -14,6 +14,9 @@ import LogoSection from '../LogoSection';
 import MenuCard from './MenuCard';
 import { drawerWidth } from 'store/constant';
 
+// ==============================|| MY MODIFY ||============================== //
+import Header from '../Header';
+
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
@@ -22,37 +25,58 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
 
     const drawer = (
         <>
-            <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-                <Box sx={{ display: 'flex', p: 2, mx: 'auto' }}>
-                    <LogoSection />
-                </Box>
-            </Box>
+            <Header handleLeftDrawerToggle={drawerToggle} />
             <BrowserView>
                 <PerfectScrollbar
                     component="div"
                     style={{
                         height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 88px)',
-                        paddingLeft: '16px',
-                        paddingRight: '16px'
+                        paddingLeft: '15px',
+                        paddingRight: '15px'
                     }}
                 >
-                    <MenuList />
-                    <MenuCard />
+                    <MenuList authmenu={'guest'} />
+
+                    <Button
+                        variant="contained"
+                        sx={{
+                            mt: '32px',
+                            borderRadius: '26px',
+                            background: 'linear-gradient(180deg, #007E05 0%, #000000 100%);',
+                            fontWeight: 700,
+                            backgroundColor: '#fff',
+                            width: '100%',
+                            fontSize: '14px'
+                        }}
+                    >
+                        Connect Wallet
+                    </Button>
+
+                    <Button
+                        variant="contained"
+                        sx={{
+                            mt: '32px',
+                            borderRadius: '26px',
+                            background: 'linear-gradient(180deg, #007E05 0%, #000000 100%);',
+                            fontWeight: 700,
+                            backgroundColor: '#fff',
+                            width: '100%',
+                            fontSize: '14px'
+                        }}
+                    >
+                        BwkQ...prW7
+                    </Button>
+
+                    <MenuList authmenu={'signin'} />
                 </PerfectScrollbar>
             </BrowserView>
-            <MobileView>
-                <Box sx={{ px: 2 }}>
-                    <MenuList />
-                    <MenuCard />
-                </Box>
-            </MobileView>
         </>
     );
 
     const container = window !== undefined ? () => window.document.body : undefined;
 
     return (
-        <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? drawerWidth : 'auto' }} aria-label="mailbox folders">
+        <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? 240 : 'auto' }} aria-label="mailbox folders">
             <Drawer
                 container={container}
                 variant={matchUpMd ? 'persistent' : 'temporary'}
@@ -62,12 +86,10 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                 sx={{
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
-                        background: theme.palette.background.default,
+                        background: '#13161B',
                         color: theme.palette.text.primary,
-                        borderRight: 'none',
-                        [theme.breakpoints.up('md')]: {
-                            top: '88px'
-                        }
+                        borderRight: '1px solid #CBCBCB',
+                        overflow: 'hidden'
                     }
                 }}
                 ModalProps={{ keepMounted: true }}

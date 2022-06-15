@@ -72,17 +72,34 @@ const NavItem = ({ item, level }) => {
                 borderRadius: `${customization.borderRadius}px`,
                 mb: 0.5,
                 alignItems: 'flex-start',
-                backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
-                py: level > 1 ? 1 : 1.25,
-                pl: `${level * 24}px`
+                backgroundColor: 'transparent',
+                py: '11px',
+                pl: `16px`
             }}
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
         >
-            <ListItemIcon sx={{ my: 'auto', minWidth: !item?.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
+            <ListItemIcon
+                sx={{ my: 'auto', width: 24, color: customization.isOpen.findIndex((id) => id === item.id) ? '#AAAAAA' : '#039700' }}
+            >
+                {itemIcon}
+            </ListItemIcon>
             <ListItemText
                 primary={
-                    <Typography variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'} color="inherit">
+                    <Typography
+                        variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'}
+                        color="inherit"
+                        sx={{
+                            fontStyle: 'normal',
+                            fontWeight: 700,
+                            fontSize: '14px',
+                            lineHeight: '17px',
+                            color: customization.isOpen.findIndex((id) => id === item.id) ? '#AAAAAA' : '#039700',
+                            '&:hover': {
+                                color: '#039700'
+                            }
+                        }}
+                    >
                         {item.title}
                     </Typography>
                 }

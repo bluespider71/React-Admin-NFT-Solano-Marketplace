@@ -17,53 +17,55 @@ import { IconMenu2 } from '@tabler/icons';
 
 const Header = ({ handleLeftDrawerToggle }) => {
     const theme = useTheme();
-
+    const public_url = process.env.PUBLIC_URL;
     return (
-        <>
+        <Box
+            sx={{
+                marginBottom: '5px'
+            }}
+        >
             {/* logo & toggler button */}
             <Box
                 sx={{
-                    width: 228,
                     display: 'flex',
                     [theme.breakpoints.down('md')]: {
                         width: 'auto'
                     }
                 }}
             >
-                <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
+                <Box
+                    component="span"
+                    sx={{
+                        flexGrow: 1,
+                        marginTop: '21px',
+                        marginLeft: '31px'
+                    }}
+                >
                     <LogoSection />
                 </Box>
-                <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
+            </Box>
+            <Box
+                sx={{
+                    textAlign: 'right'
+                }}
+            >
+                <ButtonBase sx={{ backgroundColor: 'none' }}>
                     <Avatar
-                        variant="rounded"
+                        variant="circle"
                         sx={{
-                            ...theme.typography.commonAvatar,
-                            ...theme.typography.mediumAvatar,
                             transition: 'all .2s ease-in-out',
-                            background: theme.palette.secondary.light,
-                            color: theme.palette.secondary.dark,
-                            '&:hover': {
-                                background: theme.palette.secondary.dark,
-                                color: theme.palette.secondary.light
-                            }
+                            width: '19px',
+                            height: '19px',
+                            position: 'fixed',
+                            bgcolor: 'transparent'
                         }}
                         onClick={handleLeftDrawerToggle}
-                        color="inherit"
-                    >
-                        <IconMenu2 stroke={1.5} size="1.3rem" />
-                    </Avatar>
+                        src={`${public_url}/assets/images/appbar-menu.png`}
+                        alt="appbar-menu"
+                    ></Avatar>
                 </ButtonBase>
             </Box>
-
-            {/* header search */}
-            <SearchSection />
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ flexGrow: 1 }} />
-
-            {/* notification & profile */}
-            <NotificationSection />
-            <ProfileSection />
-        </>
+        </Box>
     );
 };
 
